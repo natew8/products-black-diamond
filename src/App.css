@@ -10,20 +10,27 @@ body{
 .App {
   text-align: center;
   position: relative;
-  background-color: #6e6e6e;
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
   height: 100vh;
+  overflow: hidden;
+  background-image:url('https://lh3.googleusercontent.com/proxy/WlqclaCQQCs_jA-2lc0qN4npotj4sI0F1aPUrHWVtWTJ_ujUUAW0G8Yb5r6vtSR_vzxmsnY3ZoNwVsCcmwAtZVr066HAkZn_PjlK_cAcIQJSfoB3xhqT3FEFT9RHS34yMdlx-_eoLyN3dqUV4Io4Pe7jVRw');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-color: #e4e4e4;
 }
 
 .header{
   background-color: #73c4cf;
-  padding: 1rem;
+  padding: .5rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-image: radial-gradient( circle at center,white, #73c4cf);
+  background-image: radial-gradient( circle at center,white, #4c858d);
 }
-
+.logo{
+  height: 10%;
+  width: 5%;
+}
 .title{
   font-size: 3rem;
   max-width: 1140px;
@@ -34,20 +41,20 @@ body{
   position: relative;
 }
 .product-display{
-  max-width: 60vw;
-  max-height: 89vh;
+  max-width: 50vw;
+  max-height: 84vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-right: auto;
-  margin-left: 18rem;
+  margin-left: auto;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
-  background-color: #dfdfdf;
+  background-color: #f5f5f5;
   overflow-x: hidden;
   border: 1px solid rgb(88, 88, 88);
   border-radius: 10px;
-
+  box-shadow: 0px 5px 10px black;
 }
 .product-container{
   height: 25%;
@@ -57,7 +64,7 @@ body{
   margin: 1rem;
   font-size: .75rem;
   border: 2px solid black;
-  box-shadow: 0px 5px 10px black;
+  box-shadow: 0px 5px 5px black;
 }
 .product-container:hover{
   border: white;
@@ -78,36 +85,35 @@ body{
   width: 55%;
 }
 
-#new-product-container.hide{
-  padding-left: 4rem;
-  padding-right: .5rem;
-  /*padding-top: .5rem; */
+#new-product.hide{
   font-size: .5rem;
   position: absolute;
-  top: 0;
-  left: 0rem;
+  left: 4rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   min-height: 26vh;
-  background-color: black;
-  transform: translate(-16rem);
-  transition: all .5s;
+  background-color: #4c858d;
+  transform: translate(-22.2rem);
+  transition: all 1s;
   color: #6e6e6e;
+  height: 50vh;
+  width: 22vw;
+  width: 15vw;
 }
-#new-product-container.show{
-  padding-left: 2rem;
-  padding-right: .5rem;
-  /*padding-top: .5rem; */
+#new-product.show{
+  height: 50vh;
+  width: 18vw;
   font-size: .5rem;
   position: absolute;
-  top: 0;
-  left: 0rem;
-  display: flex;
-  flex-direction: row;
+  left: 3.5rem;
   min-height: 26vh;
-  background-color: black;
+  background-color: #4c858d;
   transform: none;
-  transition: all .5s;
+  transition: all 1s;
+  box-shadow: 3px 3px 10px black;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 #new-product-title-container{
   font-size: 1rem;
@@ -115,57 +121,76 @@ body{
   font-weight: 700;
   writing-mode: vertical-lr;
   position: absolute;
-  right: -2.5vw;
+  right: -3vw;
   top: 0;
   bottom: 0%;
   display: flex;
   text-align: right;
   justify-content: center;
-  padding: .90rem;
-  background-color: black;
-  border-left: 1px solid black;
-  border-radius: 10px;
+  padding: .7rem;
+  background-color: #4c858d;
+  border-left: 1px solid #4c858d;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: all 1s;
+  box-shadow: 3px 3px 10px black;
+  height: 20rem;
 }
 #new-product-title-container.hide{
   font-size: 1rem;
-  color: #6e6e6e ;
+  color: #8b8b8b ;
   font-weight: 700;
   writing-mode: vertical-lr;
   position: absolute;
-  right: -2.5vw;
+  right: -3vw;
   top: 0;
   bottom: 0%;
   display: flex;
   text-align: right;
   justify-content: center;
   padding: .90rem;
-  background-color: black;
-  border-left: 1px solid black;
-  border-radius: 10px;
+  background-color: #414141;
+  border-left: 1px solid #4c858d;
+  border-top-right-radius: 10px;
+  transition: all .3s;
+  box-shadow: none;
 }
 #new-product-title-container:hover{
   color: #ffffff;
   cursor: pointer;
+  transition: all .3s;
 }
 .new-product-title{
   margin-bottom: .5rem;
 }
-.input-container{
+.new-product-container{
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin:auto;
-  min-height: 25vh;
+  justify-content: space-evenly;
+}
+.input-container{
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content:space-evenly;
+  text-align: left;
 }
 #plus-sign.show{
-  transition: all.5s;
+  transition: all 1s;
   transform: rotate(45deg);
 }
+#plus-sign.hide{
+  transition: all 1s;
+}
+
 .new-product-input{
   border: 3px solid rgb(93, 93, 93);
-  margin: .25rem;
+  margin: .25rem 0 1rem;
   outline: none;
   text-align: center;
+  font-size: 1rem;
 }
 
 #description-input{
@@ -179,11 +204,16 @@ body{
   padding-right: .75rem;
 }
 .add-button-show{
-  background-color: #73c4cf;
+  background: transparent;
   padding: .5rem;
   max-width: 100px;
   transition: all 1s;
   font-weight: bold;
+  outline: none;
+  border: 1px solid black;
+}
+.add-button-show:hover{
+
 }
 .add-button-hide{
   background-color: transparent;
@@ -198,7 +228,25 @@ body{
   right: 2.5%;
   top: 0%;
   width: 18vw;
-  background-color: #d3d3d3;
+  background-color: #4c858d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px black;
+  color: white;
+  z-index: 1;
+}
+
+#details-display-landing{
+  position: absolute;
+  margin: 0 1rem;
+  padding: 1rem;
+  right: 2.5%;
+  top: 40%;
+  width: 18vw;
+  background-color: #d3d3d38a;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -206,15 +254,113 @@ body{
   border-radius: 10px;
 }
 
-#details-display.hide{
-  display: none;
-}
+
 
 .product-image-details{
   width: 17vw;
   background-color: #eeeeee;
   margin-bottom: 1rem;
   box-shadow: 0px 0px 5px black;
+  background-image: url('https://mk-website-media.s3.amazonaws.com/wp-content/uploads/2018/10/19000625/Wallpaper-Kemra-ClubhouseBrick-1.jpg');
+  background-size: 20rem;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.details-price{
+  color: #000000;
+  font-family: monospace;
+  font-size: 2rem;
+}
+.details-description{
+  font-size: 1.5rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: .75rem;
+}
+
+.edit-button{
+  background: transparent;
+  border: 1px solid black;
+  outline: none;
+  padding: 0.5rem 1rem;
+  transition: all .5s;
+}
+.edit-button:hover{
+  background-color: rgb(200, 200, 200);
+  outline: none;
+  cursor: pointer;
+  transition: all .5s;
+}
+.down-arrow{
+  height: 10%;
+  width: 10%;
+  transition: all .3s;
+  transform: rotate(180deg);
+}
+.down-arrow:hover{
+  filter: invert(1);
+  cursor: pointer;
+}
+#edit-container.show{
+  background-color: #4c858d;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: 18vw;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  transition: all .5s;
+}
+#edit-container.hide{
+  background-color: #4c858d;
+  position: relative;
+  bottom: 0;
+  right: 0%;
+  width: 18vw;
+  height: 0;
+  overflow: hidden;
+  transition: all .5s;
+  display: flex;
+  flex-direction: column;
+}
+#edit-description-input{
+  height: 60%;
+  margin: 1rem .5rem;
+  text-align: center;
+  transition: all 1s;
+  outline: none;
+}
+
+#edit-description-input.hide{
+  transition: all .5s;
+  height: 0rem;
+}
+
+#edit-description-input.alert{
+  border: 3px solid red;
+}
+
+.submit-button{
+  background: none;
+  outline: none;
+  border:1px solid black;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 3rem;
+  font-weight: bold;
+}
+.submit-button:hover{
+  cursor: pointer;
+  background: rgb(200, 200, 200);
+}
+.guitar-player{
+  height: 30%;
+  width: 10%;
+  position: absolute;
+  bottom: 1rem;
+  right: 8rem;
 }
 
 

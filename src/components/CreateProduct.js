@@ -6,7 +6,7 @@ class CreateProduct extends Component {
         this.state = {
             name: '',
             description: '',
-            price: 0,
+            price: '',
             first_image_url: '',
             second_image_url: '',
             value: [],
@@ -41,16 +41,18 @@ class CreateProduct extends Component {
         })
     }
     handleClick = (body) => {
-        this.setState({
-            name: '',
-            description: '',
-            price: 0,
-            firs_image_url: '',
-            second_image_url: '',
-            value: [],
-            visible: false
-        })
         this.props.addProduct(body)
+        setTimeout(() => {
+            this.setState({
+                name: '',
+                description: '',
+                price: 'price',
+                first_image_url: '',
+                second_image_url: '',
+                value: [],
+                visible: false
+            })
+        }, 1000);
     }
     toggleVisible = () => {
         this.setState({
@@ -64,20 +66,27 @@ class CreateProduct extends Component {
             visibility = 'show'
         }
         return (
-            <div id='new-product-container' className={visibility}>
+            <div id='new-product' className={visibility}>
+                <div className='new-product-container' >
+                    <form value='' className='input-container'>
+                        <h1>Name</h1>
+                        <input value={this.state.name} onChange={this.handleName} className='new-product-input' type='text' placeholder='name' maxLength={40}></input>
+                        <h1>Price</h1>
+                        <input value={this.state.price} onChange={this.handlePrice} className='new-product-input' type='text' placeholder='price'></input>
+                        <h1>Primary Image</h1>
+                        <input value={this.state.first_image_url} onChange={this.handleFirstImage} className='new-product-input' type='text' placeholder='primary image url'></input>
+                        <h1>Secondary Image</h1>
+                        <input value={this.state.second_image_url} onChange={this.handleSecondImage} className='new-product-input' type='text' placeholder='secondary image url'></input>
+                        <h1>Add a Description</h1>
+                        <textarea value={this.state.description} onChange={this.handleDescription} id='description-input' className='new-product-input' type='textarea' placeholder='description' maxLength={80}></textarea>
+                        <text className='character-counter'>{this.state.value.length}/80</text>
+                    </form>
+                    {(this.state.name && this.state.description) && (this.state.price && this.state.first_image_url) ? <button onClick={() => this.handleClick(this.state)} className='add-button-show'>Add Product</button> : <button className='add-button-hide'></button>}
+                </div>
                 <span onClick={this.toggleVisible} id='new-product-title-container' className={visibility}>
                     <h2 className='new-product-title' >New Product</h2>
                     <h2 id='plus-sign' className={visibility}>+</h2>
                 </span>
-                <form className='input-container'>
-                    <input onChange={this.handleName} className='new-product-input' type='text' placeholder='name' maxLength={40}></input>
-                    <input onChange={this.handlePrice} className='new-product-input' type='text' placeholder='price'></input>
-                    <input onChange={this.handleFirstImage} className='new-product-input' type='text' placeholder='primary image url'></input>
-                    <input onChange={this.handleSecondImage} className='new-product-input' type='text' placeholder='secondary image url'></input>
-                    <textarea onChange={this.handleDescription} id='description-input' className='new-product-input' type='textarea' placeholder='description' maxLength={80}></textarea>
-                    <text className='character-counter'>{this.state.value.length}/80</text>
-                    {(this.state.name && this.state.description) && (this.state.price && this.state.first_image_url) ? <button onClick={() => this.handleClick(this.state)} className='add-button-show'>Add Product</button> : <button className='add-button-hide'></button>}
-                </form>
             </div>
         )
     }

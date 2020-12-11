@@ -1,5 +1,6 @@
 UPDATE product
 SET description = $2
-WHERE product_id = $1
+WHERE product_id = $1;
 
-returning*;
+SELECT * FROM product
+ORDER BY name ASC;

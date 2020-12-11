@@ -29,10 +29,9 @@ module.exports = {
         const db = req.app.get('db')
         const { product_id } = req.params
         const { description } = req.body
+        console.log(product_id, description);
         db.update_product([product_id, description]).then(product => {
             res.status(200).send(product)
-        }).catch(err => {
-            res.status(500).send('Something Went Wrong')
         })
     },
     delete: (req, res) => {

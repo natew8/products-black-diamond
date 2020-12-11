@@ -2,25 +2,30 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Product from './Product'
 import CreateProduct from './CreateProduct'
-// import Details from './Details'
+
+import Details from './Details'
 
 class Display extends Component {
     constructor() {
         super()
         this.state = {
             products: [],
-            product: ''
+            product: '',
+            visible: false,
+            loading: true
         }
         this.addProduct = this.addProduct.bind(this)
         this.deleteProduct = this.deleteProduct.bind(this)
         this.updateProduct = this.updateProduct.bind(this)
         this.handleStateChange = this.handleStateChange.bind(this)
+        this.toggleVisible = this.toggleVisible.bind(this)
     }
 
     componentDidMount() {
         axios.get('/api/products').then(res => {
             this.setState({
                 products: res.data,
+                loading: false
             })
         })
     }
@@ -28,12 +33,19 @@ class Display extends Component {
     addProduct(name, description, price, first_image_url) {
         axios.post('/api/products', name, description, price, first_image_url).then(res => {
             this.setState({
-                products: res.data
+                products: res.data,
+                loading: false
             })
         })
     }
-    updateProduct(id) {
-        console.log(id)
+    updateProduct(id, description) {
+        console.log(id, description)
+        axios.put(`/api/products/${id}`, description).then(res => {
+            this.setState({
+                products: res.data
+            })
+        })
+
     }
     deleteProduct(id) {
         axios.delete(`/api/products/${id}`).then(res => {
@@ -48,7 +60,12 @@ class Display extends Component {
         })
         // console.log(this.state.product)
     }
-
+    toggleVisible() {
+        this.setState({
+            visible: !this.state.visible
+        })
+        console.log(this.state.visible)
+    }
     render() {
         // console.log(this.state.products)
         const productsMap = this.state.products.map((e, index) => {
@@ -66,21 +83,20 @@ class Display extends Component {
                 <CreateProduct
                     products={this.state.products}
                     addProduct={this.addProduct} />
-                <div className='product-display'>
+                {this.state.loading ? <h1>Fetching Products...</h1> : <div className='product-display'>
                     {productsMap}
 
-                </div>
-                {!this.state.product ? <h1 id='details-display'>Select A Product to View Details</h1> :
-                    <div id='details-display' >
-                        <img className='product-image-details' src={this.state.product.second_image_url} />
-                        <h1 className='details-header'>{this.state.product.name}</h1>
-                        <h2 className='details-price'>{`$${this.state.product.price}`}</h2>
-                        <p className='details-description'>{this.state.product.description}</p>
-                        <button>Edit Info</button>
-                    </div>}
-                {/* <Details
+                </div>}
+                <Details
+                    product={this.state.product}
+                    name={this.state.product.name}
+                    description={this.state.product.description}
+                    price={this.state.product.price}
+                    firstImage={this.state.product.first_image_url}
+                    secondImage={this.state.product.second_image_url}
+                    toggleVisible={this.toggleVisible}
                     updateProduct={this.updateProduct}
-                    products={this.state.products} /> */}
+                    id={this.state.product.product_id} />
             </div>
         )
     }
